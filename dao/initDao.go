@@ -22,7 +22,7 @@ func InitDao() {
 	// 2. 初始化表
 	// 3. 插入数据
 
-	db, err = gorm.Open(sqlite.Open("test.db"), &gorm.Config{})
+	db, err = gorm.Open(sqlite.Open("dao/test.db"), &gorm.Config{})
 	if err != nil {
 		panic("failed to connect database")
 	}

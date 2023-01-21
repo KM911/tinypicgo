@@ -1,3 +1,9 @@
 # ide
 .vscode
 .ide
+# bin
+*.exe
+*.dll
+*.bat
+*.vbs
+

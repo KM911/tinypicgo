@@ -19,7 +19,6 @@ func UploadImage(c *gin.Context) {
 	// 保存图片
 	dao.SaveImage(image.Name, image.Data)
 	// 返回网站地址
-
 	c.String(200, config.Host+"api/image/"+image.Name)
 
 }
