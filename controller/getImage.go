@@ -2,7 +2,6 @@ package controller
 
 import (
 	"github.com/gin-gonic/gin"
-	"os"
 	"path"
 	"picgo/dao"
 )
@@ -14,12 +13,11 @@ func GetImage(c *gin.Context) {
 	println(filename)
 	data := dao.FindImage(filename)
 	filetype := path.Ext(filename)[1:]
-	println(data[:10])
-	//c.Data(200, "image/"+string(filetype), []byte(data)
 
 	// 3. 返回文件数据
+	if data == "" {
+		c.String(200, "not found")
+		return
+	}
 	c.Data(200, "image/"+filetype, []byte(data))
-
-	// 写入文件进行测试
-	os.WriteFile(filename, []byte(data), 0666)
 }

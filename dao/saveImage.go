@@ -6,13 +6,12 @@ import (
 
 func SaveImage(filename string, data string) {
 	var image ImageTable
+	nedata, _ := base64.StdEncoding.DecodeString(data)
 	db.Find(&image, "filename = ?", filename)
-	if image.ID == 0 {
 
-		nedata, _ := base64.StdEncoding.DecodeString(data)
+	if image.ID == 0 {
 		db.Create(&ImageTable{Filename: filename, Data: string(nedata)})
 	} else {
-		db.Model(&image).Update("data", data)
+		db.Create(&ImageTable{Filename: "A" + filename, Data: string(nedata)})
 	}
 }
-
